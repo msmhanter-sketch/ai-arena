@@ -41,7 +41,8 @@ export default function WalletButton() {
     setAirdropping(true);
     setAirdropMsg(null);
     try {
-      const res = await fetch('http://localhost:3001/airdrop', {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+      const res = await fetch(`${backendUrl}/airdrop`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ address: publicKey.toBase58() }),
